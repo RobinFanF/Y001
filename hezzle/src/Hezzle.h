@@ -4,7 +4,7 @@
 
 #include "hezzle/Application.h"
 
-
+#include "hezzle/Log.h"
 //enrty point
 
 #include  "hezzle/EntryPoint.h"

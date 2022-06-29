@@ -1,0 +1,3 @@
+[submodule "hezzle/third-party/spdlog"]
+	path = hezzle/third-party/spdlog
+	url = https://github.com/gabime/spdlog
