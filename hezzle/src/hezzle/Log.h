@@ -1,7 +1,8 @@
 #pragma once
 #include "core.h"
 #include <spdlog/spdlog.h>
-#include <memory>
+#include <spdlog/fmt/ostr.h>
+
 
 #define HZ_CORE_TRACE(...)		::hezzle::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define HZ_CORE_WARN(...)		::hezzle::Log::GetCoreLogger()->warn(__VA_ARGS__)

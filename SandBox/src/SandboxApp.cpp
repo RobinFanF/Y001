@@ -1,4 +1,3 @@
-
 #include <Hezzle.h>
 
 class Sandbox : public hezzle::Application
