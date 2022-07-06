@@ -10,7 +10,7 @@ namespace hezzle
 		None = 0, 
 		WindowClose,WindowResize,WindowFocus,WindowMoved,
 		AppTick,AppUpdata,AppRender,
-		KeyPressed,KeyReleased,
+		KeyPressed,KeyReleased,KeyTyped,
 		MouseButtonPressed, MouseButtonReleased,MouseMoved,MouseScrolled
 	};
 

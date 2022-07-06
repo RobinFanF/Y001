@@ -5,6 +5,8 @@
 #include "hezzle/Events/KeyEvent.h"
 #include "hezzle/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace hezzle
 {
 	static bool s_GLFWInitialized = false;
@@ -43,8 +45,12 @@ namespace hezzle
 			s_GLFWInitialized = true;
 		}
 
+
+
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		HZ_CORE_ASSERT(status, "glad initialize failed!")
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -129,6 +135,15 @@ namespace hezzle
 
 				MouseMovedEvent event((float)xPos, (float)yPos);
 				data.EventCallback(event);
+			});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int codepoint)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				KeyTypedEvent event(codepoint);
+				data.EventCallback(event);
+
 			});
 	
 

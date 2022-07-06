@@ -14,8 +14,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "hezzle/third-party/GLFW/include"
+IncludeDir["Glad"] = "hezzle/third-party/Glad/include"
+IncludeDir["ImGui"] = "hezzle/third-party/imgui"
+IncludeDir["glm"] = "hezzle/third-party/glm"
 
 include "hezzle/third-party/GLFW"
+include "hezzle/third-party/Glad"
+include "hezzle/third-party/imgui"
  
 project "hezzle"
 
@@ -35,18 +40,25 @@ project "hezzle"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/third-party/glm/glm/**.hpp",
+        "%{prj.name}/third-party/glm/glm/**.inl"
     }
 
     includedirs
     {
         "%{prj.name}/src",
         "%{prj.name}/third-party/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
@@ -59,7 +71,8 @@ project "hezzle"
         defines
         {
             "HZ_PLATFORM_WINDOWS",
-            "HZ_BUILD_DLL"
+            "HZ_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -69,14 +82,17 @@ project "hezzle"
 
         filter "configurations:Debug"
             defines "HZ_DEBUG"
+            buildoptions "/MDd"
             symbols "On"
 
         filter "configurations:Release"
             defines "HZ_Release"
+            buildoptions "/MD"
             optimize "On"
 
         filter "configurations:Dist"
             defines "HZ_Dist"
+            buildoptions "/MD"
             optimize "On"
 
 
@@ -99,7 +115,8 @@ project "SandBox"
         includedirs
         {
             "hezzle/third-party/spdlog/include",
-            "hezzle/src"
+            "hezzle/src",
+            "%{IncludeDir.glm}"
         }
 
         links
@@ -118,14 +135,17 @@ project "SandBox"
                 "HZ_PLATFORM_WINDOWS"
             }
 
-            filter "configurations:Debug"
-                defines "HZ_DEBUG"
-                symbols "On"
+        filter "configurations:Debug"
+            defines "HZ_DEBUG"
+            buildoptions "/MDd"
+            symbols "On"
 
-            filter "configurations:Release"
-                defines "HZ_Release"
-                optimize "On"
+        filter "configurations:Release"
+            defines "HZ_Release"
+            buildoptions "/MD"
+            optimize "On"
 
-            filter "configurations:Dist"
-                defines "HZ_Dist"
-                optimize "On"
+        filter "configurations:Dist"
+            defines "HZ_Dist"
+            buildoptions "/MD"
+            optimize "On"

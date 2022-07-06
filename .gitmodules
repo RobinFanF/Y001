@@ -4,3 +4,9 @@
 [submodule "hezzle/third-party/GLFW"]
 	path = hezzle/third-party/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "hezzle/third-party/imgui"]
+	path = hezzle/third-party/imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "hezzle/third-party/glm"]
+	path = hezzle/third-party/glm
+	url = https://github.com/g-truc/glm
