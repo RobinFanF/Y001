@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "hezzle/LayerStack.h"
 #include "Events/ApplicationEvent.h"
+#include "hezzle/ImGui/ImGuiLayer.h"
 
 namespace hezzle
 {	 
@@ -24,6 +25,7 @@ namespace hezzle
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

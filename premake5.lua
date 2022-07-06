@@ -26,8 +26,10 @@ project "hezzle"
 
     location "hezzle"
 
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir("bin/" .. outputdir .."/%{prj.name}")
     objdir("bin-int/" .. outputdir .."/%{prj.name}")
@@ -64,8 +66,7 @@ project "hezzle"
 
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
+        
         systemversion "latest"
 
         defines
@@ -75,25 +76,18 @@ project "hezzle"
             "GLFW_INCLUDE_NONE"
         }
 
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/SandBox")
-        }
 
         filter "configurations:Debug"
             defines "HZ_DEBUG"
-            buildoptions "/MDd"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "HZ_Release"
-            buildoptions "/MD"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "HZ_Dist"
-            buildoptions "/MD"
-            optimize "On"
+            optimize "on"
 
 
 project "SandBox"
@@ -102,6 +96,8 @@ project "SandBox"
 
         kind "ConsoleApp"
         language "C++"
+        cppdialect "C++17"
+        staticruntime "on"
 
         targetdir("bin/" .. outputdir .."/%{prj.name}")
         objdir("bin-int/" .. outputdir .."/%{prj.name}")
@@ -126,8 +122,7 @@ project "SandBox"
 
 
         filter "system:windows"
-            cppdialect "C++17"
-            staticruntime "On"
+
             systemversion "latest"
 
             defines
@@ -137,15 +132,15 @@ project "SandBox"
 
         filter "configurations:Debug"
             defines "HZ_DEBUG"
-            buildoptions "/MDd"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "HZ_Release"
-            buildoptions "/MD"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "HZ_Dist"
-            buildoptions "/MD"
-            optimize "On"
+            optimize "on"
+
+
+                           
