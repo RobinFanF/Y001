@@ -1,7 +1,8 @@
 #pragma once
 
 #include "hezzle/Window.h"
-
+#include "hezzle/Renderer/GraphicsContext.h"
+#include "../OpenGL/OpenGLContext.h"
 #include <GLFW/glfw3.h>
 
 
@@ -30,6 +31,7 @@ namespace hezzle
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
